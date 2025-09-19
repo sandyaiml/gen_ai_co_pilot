@@ -1,0 +1,65 @@
+/* style.css */
+
+/* General font settings */
+body {
+    font-family: 'Roboto', sans-serif; /* Or another professional sans-serif font */
+    color: #333; /* Darker text for better readability */
+}
+
+/* Main Title */
+h3.main-title {
+    font-size: 2.5em; /* Larger for prominence */
+    font-weight: 700; /* Bold */
+    color: #004d40; /* A professional accent color */
+    margin-bottom: 0.5em;
+}
+
+/* Sub-info in Header */
+.header-info {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #555;
+    text-align: right;
+    padding-top: 10px; /* Align with main title */
+}
+
+/* Subheaders */
+h2 {
+    font-size: 1.8em; /* Slightly larger subheaders */
+    color: #222;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+}
+
+/* Metrics Styling */
+[data-testid="stMetric"] label {
+    font-size: 1em; /* Label size */
+    font-weight: 500;
+}
+
+[data-testid="stMetric"] div[data-testid="stMetricValue"] {
+    font-size: 2.2em; /* Larger metric values */
+    font-weight: 700;
+    color: #1a73e8; /* Emphasize with a primary color */
+}
+
+[data-testid="stMetric"] div[data-testid="stMetricDelta"] {
+    font-size: 1em; /* Delta size */
+}
+
+/* Markdown sections for image/question cases */
+.custom-markdown-box {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #e8f0fe; /* Light blue background for sections */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 1.5em;
+}
+
+/* Charts */
+/* Plotly charts will generally respect settings passed in update_layout,
+   but we can also try to influence global font for plotly here if needed. */
+.stPlotlyChart {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
