@@ -2,6 +2,7 @@ import os
 import mimetypes
 from dotenv import load_dotenv
 import google.generativeai as genai
+import streamlit as st
 
 # load_dotenv("API_KEY.env")
 
@@ -132,5 +133,6 @@ def generate_alerts_with_gemini(latest_row: dict):
 
     response = model.generate_content(alerts_prompt)
     return response.text if response else "<div style='color:gray;'>No alerts generated.</div>"
+
 
 
