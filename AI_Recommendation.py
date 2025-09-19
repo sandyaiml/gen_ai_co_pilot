@@ -3,9 +3,11 @@ import mimetypes
 from dotenv import load_dotenv
 import google.generativeai as genai
 
-load_dotenv("API_KEY.env")
+# load_dotenv("API_KEY.env")
 
-api_key = os.getenv("GOOGLE_API_KEY")   
+# api_key = os.getenv("GOOGLE_API_KEY")   
+api_key = st.secrets["GOOGLE_API_KEY"]
+
 genai.configure(api_key=api_key)
 
 def generate_recommendation_with_gemini(temp, free_lime, c3s, c2s, c3a, c4af, microscopy_image=None, user_question=None):
@@ -130,4 +132,5 @@ def generate_alerts_with_gemini(latest_row: dict):
 
     response = model.generate_content(alerts_prompt)
     return response.text if response else "<div style='color:gray;'>No alerts generated.</div>"
+
 
