@@ -1,0 +1,7 @@
+streamlit==1.49.1
+numpy==2.3.2
+matplotlib==3.10.6
+google-ai-generativelanguage==0.6.15
+plotly==6.3.0
+pillow==11.3.0
+python-dotenv==1.1.1
