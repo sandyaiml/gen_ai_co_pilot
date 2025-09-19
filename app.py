@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 import time
-from Recommendation_cement import generate_recommendation_with_gemini, generate_alerts_with_gemini
+from AI_Recommendation import generate_recommendation_with_gemini, generate_alerts_with_gemini
 import base64
 import plotly.express as px
 import plotly.graph_objects as go
@@ -209,4 +209,5 @@ with col2:
             f"""<div style="padding:10px; border-radius:8px; background:#fff3e0; border: 1px solid #ffcc80;
             box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-top:1em;">{ai_alerts}</div>""",
             unsafe_allow_html=True
+
         )
