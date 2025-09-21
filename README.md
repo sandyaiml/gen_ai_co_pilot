@@ -15,4 +15,3 @@ Streamlit + LLM-based assistant to ingest, analyze, and answer domain queries.
 ## Note
 This project currently uses the free version of Gemini AI, which comes with limitations on the number of API calls. If you encounter any issues due to these limits, please reach out to us for assistance.
 
-(Full README content — add demo link/screenshots in assets/images)
