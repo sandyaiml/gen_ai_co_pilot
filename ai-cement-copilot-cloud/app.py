@@ -1,4 +1,4 @@
-# appv6.py
+
 import os
 import json
 import io
@@ -883,9 +883,6 @@ with col_main:
             cols2[6].markdown(create_metric_card_html("LSF Min", 'LSF_Min', robo, '.2f'), unsafe_allow_html=True)
 
 st.markdown("---")
-# print("Files inside /app:", os.listdir("/app"))
-# sys.stdout.flush()
-# 2️⃣ SCADA Trend Dashboard
 st.header("SCADA Trend Dashboard")
 try:
     display_scada_trends_ui(client, SCADA_VIEW)
@@ -905,7 +902,6 @@ except Exception:
 
 st.markdown("---")
 
-# 4️⃣ AI Recommendation
 if st.session_state.get("last_recommendation"):
     rec = st.session_state["last_recommendation"]
     st.header("AI Recommendation (Gemini 2.5-flash)")
@@ -921,7 +917,6 @@ else:
 
 st.markdown("---")
 
-# 5️⃣ Operator Chat (follow-ups)
 st.header("Operator Chat (Follow-Ups)")
 chat_input = st.text_input("Ask follow-up question", value=st.session_state.get('chat_input', ''), key='chat_input_box')
 col_send, col_clear = st.columns([1,1])
@@ -955,7 +950,6 @@ else:
 
 st.markdown("---")
 
-# 6️⃣ Recent AI recommendations
 st.header("Recent AI Recommendations")
 if st.session_state.get("last_recommendations"):
     for rec in st.session_state["last_recommendations"][:6]:
@@ -963,150 +957,3 @@ if st.session_state.get("last_recommendations"):
 else:
     st.info("No recommendations yet. Request one to populate history.")
 
-# col_main, = st.columns([1])
-
-# # 1️⃣ Live process snapshot
-# with col_main:
-#     st.header("Live process snapshot")
-#     if st.button("Fetch Latest Data"):
-#         scada_df, robolab_df = load_latest_data()
-#         if scada_df.empty or robolab_df.empty:
-#             st.error("No recent data available from BigQuery.")
-#         else:
-#             st.subheader("SCADA Latest")
-#             scada = scada_df.iloc[0].to_dict()
-#             cols = st.columns(7)
-#             cols[0].metric("BZ Temp (°C)", f"{scada.get('kiln_burning_zone_temp_C', 'N/A'):.2f}" if scada.get('kiln_burning_zone_temp_C') else "N/A")
-#             cols[1].metric("Coal Feed (tph)", f"{scada.get('coal_feed_tph', 'N/A'):.2f}" if scada.get('coal_feed_tph') else "N/A")
-#             cols[2].metric("O₂ (%)", f"{scada.get('O2_pct', 'N/A'):.2f}" if scada.get('O2_pct') else "N/A")
-#             cols[3].metric("CO₂ (%)", f"{scada.get('CO2_pct', 'N/A'):.2f}" if scada.get('CO2_pct') else "N/A")
-#             cols[4].metric("Kiln Speed (rpm)", f"{scada.get('kiln_speed_rpm', 'N/A'):.2f}" if scada.get('kiln_speed_rpm') else "N/A")
-#             cols[5].metric("O₂ Target Range", "2.5 – 3.0")
-#             cols[6].metric("BZ Temp Target (°C)", "1400 – 1450")
-
-#             st.subheader("Robolab Latest")
-#             robo = robolab_df.iloc[0].to_dict()
-#             cols = st.columns(3)
-#             cols[0].metric("LSF", f"{robo.get('LSF_Mean', 'N/A'):.2f}" if robo.get('LSF_Mean') else "N/A")
-#             cols[1].metric("SiO₂ (%)", f"{robo.get('SiO2_Mean', 'N/A'):.2f}" if robo.get('SiO2_Mean') else "N/A")
-#             cols[2].metric("Al₂O₃ (%)", f"{robo.get('Al2O3_Mean', 'N/A'):.2f}" if robo.get('Al2O3_Mean') else "N/A")
-
-# st.markdown("---")
-
-# # 2️⃣ SCADA Trend Dashboard
-# st.header("SCADA Trend Dashboard")
-# try:
-#     display_scada_trends_ui(client, SCADA_VIEW)
-# except Exception as e:
-#     st.error(f"SCADA trends UI error: {e}")
-
-# st.markdown("---")
-
-# # 3️⃣ Quick KPIs
-# st.header("Quick KPIs")
-# try:
-#     scada_agg_preview = st.session_state.get('last_scada_agg', {})
-#     if not scada_agg_preview:
-#         st.info("Press 'Fetch 1hr snapshot & get recommendation' to populate KPIs.")
-#     else:
-#         show_kpi_row(scada_agg_preview, lookback_hours=6)
-# except Exception:
-#     st.info("KPI area: no aggregates yet.")
-
-# st.markdown("---")
-
-# # 4️⃣ AI Recommendation (Gemini 2.5-flash)
-# if st.session_state.get("last_recommendation"):
-#     rec = st.session_state["last_recommendation"]
-#     st.subheader("AI Recommendation (Gemini 2.5-flash)")
-#     action = rec.get("action") if isinstance(rec, dict) else rec
-#     rationale = rec.get("rationale") if isinstance(rec, dict) else None
-#     confidence = rec.get("confidence") if isinstance(rec, dict) else None
-#     confidence_justification = rec.get("confidence_justification") if isinstance(rec, dict) else None
-#     expected = rec.get("expected_outcome") if isinstance(rec, dict) else None
-#     severity = rec.get("severity") if isinstance(rec, dict) else None
-
-#     st.markdown(f"**Action:** {action}")
-#     if rationale:
-#         st.markdown(f"**Rationale:** {rationale}")
-#     if confidence:
-#         st.markdown(f"**Confidence:** {confidence}")
-#     if confidence_justification:
-#         st.markdown(f"**Confidence Justification:** {confidence_justification}")
-#     if expected:
-#         st.markdown(f"**Expected Outcome:** {expected}")
-#     if severity:
-#         st.markdown(f"**Severity:** {severity}")
-
-#     def clean_for_json(obj):
-#         if isinstance(obj, dict):
-#             return {k: clean_for_json(v) for k, v in obj.items()}
-#         elif isinstance(obj, list):
-#             return [clean_for_json(v) for v in obj]
-#         elif isinstance(obj, (np.integer, np.floating)):
-#             return obj.item()
-#         elif isinstance(obj, (np.ndarray,)):
-#             return obj.tolist()
-#         elif isinstance(obj, (datetime.datetime, datetime.date)):
-#             return obj.isoformat()
-#         else:
-#             return obj
-
-#     rec_clean = clean_for_json(rec)
-#     st.download_button(
-#         "Download recommendation JSON",
-#         json.dumps(rec_clean, indent=2),
-#         file_name="recommendation.json",
-#         mime="application/json"
-#     )
-# else:
-#     st.info("No recommendation yet. Use the sidebar button to generate one.")
-
-# st.markdown("---")
-
-# # 5️⃣ Operator Chat (follow-ups)
-# st.header("Operator Chat (follow-ups)")
-# chat_input = st.text_input("Ask follow-up question", value=st.session_state.get('chat_input', ''), key='chat_input_box')
-# col_send, col_clear = st.columns([1,1])
-# with col_send:
-#     if st.button("Send question to Gemini"):
-#         user_q = chat_input.strip()
-#         if not user_q:
-#             st.warning("Please enter a question.")
-#         else:
-#             snapshot = st.session_state.get('last_snapshot')
-#             if not snapshot:
-#                 st.error("No snapshot available — request recommendation first.")
-#             else:
-#                 with st.spinner("Calling Gemini for follow-up..."):
-#                     resp = call_gemini_genai_sdk(snapshot, user_question=user_q)
-#                 st.session_state['chat_history'].append({'ts': datetime.datetime.now().isoformat(), 'role': 'operator', 'text': user_q})
-#                 reply_text = resp.get('action') if isinstance(resp, dict) and resp.get('action') else (resp if isinstance(resp, str) else json.dumps(resp))
-#                 st.session_state['chat_history'].append({'ts': datetime.datetime.now().isoformat(), 'role': 'AI', 'text': reply_text})
-#                 st.session_state['chat_input'] = ''
-# with col_clear:
-#     if st.button("Clear chat history"):
-#         st.session_state['chat_history'] = []
-
-# if st.session_state.get('chat_history'):
-#     for item in st.session_state['chat_history'][-20:]:
-#         if item['role'] == 'operator':
-#             st.markdown(f"**You — {item['ts']}**: {item['text']}")
-#         else:
-#             st.markdown(f"**AI — {item['ts']}**: {item['text']}")
-# else:
-#     st.info("No chat messages yet.")
-
-# st.markdown("---")
-
-# # 6️⃣ Recent AI recommendations
-# st.subheader("Recent AI recommendations")
-# if st.session_state.get("last_recommendations"):
-#     for rec in st.session_state["last_recommendations"][:6]:
-#         st.markdown(f"- **{rec['ts']}** — {rec.get('action')} — _{rec.get('confidence')}_")
-# else:
-#     st.info("No recommendations yet. Request one to populate history.")
-
-# st.markdown("---")
-# st.write("- Phase comments are stored in-session; export them using the sidebar export button.")
-# st.write("- Ensure GOOGLE_APPLICATION_CREDENTIALS is set with BigQuery + Vertex/GenAI permissions.")
