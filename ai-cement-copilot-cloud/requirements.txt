@@ -1,0 +1,13 @@
+streamlit==1.27.0
+google-cloud-bigquery==3.6.0
+google-auth==2.22.0
+numpy
+opencv-python-headless
+scipy
+matplotlib
+pandas
+requests
+python-dotenv
+google-genai>=0.3.0
+db-dtypes
+plotly
