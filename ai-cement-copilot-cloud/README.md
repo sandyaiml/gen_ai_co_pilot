@@ -36,14 +36,14 @@ AI Cement Quality Co-Pilot is a Streamlit-based web application that helps cemen
 ```
 ai-cement-copilot-cloud/
 │
-├── app.py                     # Main Streamlit application
-├── vis.py                     # Visualization and SCADA plotting functions
+├── app.py                      # Main Streamlit application
+├── vis.py                      # Visualization and SCADA plotting functions
 ├── requirements.txt            # Python dependencies
 ├── company_logo.png            # Logo displayed on header
 ├── jk_icon.png                 # Streamlit app icon
 ├── .streamlit/                 # Streamlit configuration folder
-├── cementai/                   # Local virtual environment folder (ignored in Git)
-└── streamlit-access-sa.json    # Google Cloud credentials (excluded via .gitignore)
+├── Dockerfile                  # For Docker config
+└── start.sh                    # To setup secrate env variables and pass while deploying docker conteaner
 ```
 
 ---
