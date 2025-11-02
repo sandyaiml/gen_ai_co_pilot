@@ -1,12 +1,9 @@
-# viz.py
 from typing import Tuple, Dict, Any
 import pandas as pd
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
-
-
 
 # Sparkline helper used by app.py KPI row
 def sparkline_figure(series: pd.Series, height: int = 60) -> go.Figure:
@@ -112,3 +109,4 @@ def display_scada_trends_ui(client, scada_view: str):
         c2.metric("Std", f"{std_val:.3f}")
         c3.metric("Min", f"{min_val:.3f}")
         c4.metric("Max", f"{max_val:.3f}")
+
